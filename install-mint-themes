@@ -34,24 +34,24 @@ latest_version_mint_themes=$(echo $latest_version_mint_themes |
 is_installed() {
 	if dpkg --status $1 2>/dev/null
 	then
-		return 0
+		echo "true"
 	else
-		return 1
+		echo "false"
 	fi
 }
 
-if ! is_installed mint-x-icons
+if [[ is_installed mint-x-icons == "false" ]]
 then	
 	wget "$mirror"/pool/main/m/mint-x-icons/$latest_version_x_icons \
 		-O /tmp/$latest_version_x_icons
 fi
 
-if ! is_installed mint-y-icons
+if [[ is_installed mint-y-icons == "false" ]]
 then
 wget "$mirror"/pool/main/m/mint-y-icons/$latest_version_y_icons \
 		-O /tmp/$latest_version_y_icons
 
-if ! is_installed mint-themes
+if [[ is_installed mint-themes == "false" ]]
 then
 	wget "$mirror"/pool/main/m/mint-themes/$latest_version_mint_themes \
 		-O /tmp/$latest_version_mint_themes
