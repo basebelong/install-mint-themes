@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 mirror="https://mirrors.edge.kernel.org/linuxmint-packages"
 
 latest_version_x_icons=$(curl "$mirror"/pool/main/m/mint-x-icons/ 2>/dev/null |
