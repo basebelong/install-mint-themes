@@ -6,7 +6,7 @@ mirror="https://mirrors.edge.kernel.org/linuxmint-packages"
 latest_version_x_icons=$(curl "$mirror"/pool/main/m/mint-x-icons/ 2>/dev/null |
 	grep '.deb' |
 	grep '<a href="mint-x-icons' |
-	cut -d'>' -f4 | cut -d'<' -f1 |
+	cut -d'>' -f2 | cut -d'<' -f1 |
 	sort | tail -n 1)
 
 latest_version_x_icons_number=$(echo $latest_version_x_icons |
@@ -17,7 +17,7 @@ installed_version_x_icons=$(dpkg --status mint-x-icons |
 
 latest_version_y_icons=$(curl "$mirror"/pool/main/m/mint-y-icons/ 2>/dev/null |
 	grep '.deb' | grep '<a href="mint-y-icons' |
-	cut -d'>' -f4 | cut -d'<' -f1 |
+	cut -d'>' -f2 | cut -d'<' -f1 |
 	sort | tail -n 1)
 
 latest_version_y_icons_number=$(echo $latest_version_y_icons |
@@ -25,7 +25,7 @@ latest_version_y_icons_number=$(echo $latest_version_y_icons |
 
 latest_version_mint_themes=$(curl "$mirror"/pool/main/m/mint-themes/ 2>/dev/null |
 	grep '.deb' | grep '<a href="mint-theme' |
-	cut -d'>' -f4 | cut -d'<' -f1 |
+	cut -d'>' -f2 | cut -d'<' -f1 |
 	sort | tail -n 1)
 
 latest_version_mint_themes=$(echo $latest_version_mint_themes |
