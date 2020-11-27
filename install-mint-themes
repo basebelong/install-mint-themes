@@ -32,7 +32,7 @@ latest_version_mint_themes=$(echo $latest_version_mint_themes |
 	cut -d'_' -f2 | cut -d'_' -f1)
 
 is_installed() {
-	if dpkg --status $1
+	if dpkg --status $1 2>/dev/null
 	then
 		return 0
 	else
@@ -47,6 +47,7 @@ then
 fi
 
 if ! is_installed mint-y-icons
+then
 wget "$mirror"/pool/main/m/mint-y-icons/$latest_version_y_icons \
 		-O /tmp/$latest_version_y_icons
 
@@ -54,6 +55,7 @@ if ! is_installed mint-themes
 then
 	wget "$mirror"/pool/main/m/mint-themes/$latest_version_mint_themes \
 		-O /tmp/$latest_version_mint_themes
+fi
 
 echo "Installing $latest_version_x_icons..."
 sudo dpkg -i /tmp/$latest_version_x_icons && echo "Done!" || echo "Error!"
@@ -64,4 +66,6 @@ sudo dpkg -i /tmp/$latest_version_y_icons && echo "Done!" || echo "Error!"
 echo "Installing $latest_version_mint_themes..."
 sudo dpkg -i /tmp/$latest_version_mint_themes && echo "Done!" || echo "Error!"
 
-sudo rm -rf /tmp/$latest_version_x_icons /tmp/$latest_version_y_icons /tmp/$latest_version_mint_themes
+sudo rm -rf /tmp/$latest_version_x_icons
+rm -rf /tmp/$latest_version_y_icons
+rm -rf /tmp/$latest_version_mint_themes
