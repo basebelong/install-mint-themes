@@ -9,27 +9,15 @@ latest_version_x_icons=$(curl "$mirror"/pool/main/m/mint-x-icons/ 2>/dev/null |
 	cut -d'>' -f2 | cut -d'<' -f1 |
 	sort | tail -n 1)
 
-latest_version_x_icons_number=$(echo $latest_version_x_icons |
-	cut -d'_' -f2 | cut -d'_' -f1)
-
-installed_version_x_icons=$(dpkg --status mint-x-icons |
-	grep -e '^Version: ' | cut -d' ' -f2)
-
 latest_version_y_icons=$(curl "$mirror"/pool/main/m/mint-y-icons/ 2>/dev/null |
 	grep '.deb' | grep '<a href="mint-y-icons' |
 	cut -d'>' -f2 | cut -d'<' -f1 |
 	sort | tail -n 1)
 
-latest_version_y_icons_number=$(echo $latest_version_y_icons |
-	cut -d'_' -f2 | cut -d'_' -f1)
-
 latest_version_mint_themes=$(curl "$mirror"/pool/main/m/mint-themes/ 2>/dev/null |
 	grep '.deb' | grep '<a href="mint-theme' |
 	cut -d'>' -f2 | cut -d'<' -f1 |
 	sort | tail -n 1)
-
-latest_version_mint_themes=$(echo $latest_version_mint_themes |
-	cut -d'_' -f2 | cut -d'_' -f1)
 
 wget "$mirror"/pool/main/m/mint-x-icons/$latest_version_x_icons \
 	-O /tmp/$latest_version_x_icons
