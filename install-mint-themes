@@ -40,18 +40,18 @@ is_installed() {
 	fi
 }
 
-if [[ is_installed mint-x-icons == "false" ]]
+if [[ "$(is_installed mint-x-icons)" == "false" ]]
 then	
 	wget "$mirror"/pool/main/m/mint-x-icons/$latest_version_x_icons \
 		-O /tmp/$latest_version_x_icons
 fi
 
-if [[ is_installed mint-y-icons == "false" ]]
+if [[ "$(is_installed mint-y-icons)" == "false" ]]
 then
 wget "$mirror"/pool/main/m/mint-y-icons/$latest_version_y_icons \
 		-O /tmp/$latest_version_y_icons
 
-if [[ is_installed mint-themes == "false" ]]
+if [[ $(is_installed mint-themes) == "false" ]]
 then
 	wget "$mirror"/pool/main/m/mint-themes/$latest_version_mint_themes \
 		-O /tmp/$latest_version_mint_themes
