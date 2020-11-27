@@ -31,31 +31,14 @@ latest_version_mint_themes=$(curl "$mirror"/pool/main/m/mint-themes/ 2>/dev/null
 latest_version_mint_themes=$(echo $latest_version_mint_themes |
 	cut -d'_' -f2 | cut -d'_' -f1)
 
-is_installed() {
-	if dpkg --status $1 2>/dev/null
-	then
-		echo "true"
-	else
-		echo "false"
-	fi
-}
+wget "$mirror"/pool/main/m/mint-x-icons/$latest_version_x_icons \
+	-O /tmp/$latest_version_x_icons
 
-if [[ "$(is_installed mint-x-icons)" == "false" ]]
-then	
-	wget "$mirror"/pool/main/m/mint-x-icons/$latest_version_x_icons \
-		-O /tmp/$latest_version_x_icons
-fi
-
-if [[ "$(is_installed mint-y-icons)" == "false" ]]
-then
 wget "$mirror"/pool/main/m/mint-y-icons/$latest_version_y_icons \
-		-O /tmp/$latest_version_y_icons
+	-O /tmp/$latest_version_y_icons
 
-if [[ $(is_installed mint-themes) == "false" ]]
-then
-	wget "$mirror"/pool/main/m/mint-themes/$latest_version_mint_themes \
+wget "$mirror"/pool/main/m/mint-themes/$latest_version_mint_themes \
 		-O /tmp/$latest_version_mint_themes
-fi
 
 echo "Installing $latest_version_x_icons..."
 sudo dpkg -i /tmp/$latest_version_x_icons && echo "Done!" || echo "Error!"
@@ -67,5 +50,5 @@ echo "Installing $latest_version_mint_themes..."
 sudo dpkg -i /tmp/$latest_version_mint_themes && echo "Done!" || echo "Error!"
 
 sudo rm -rf /tmp/$latest_version_x_icons
-rm -rf /tmp/$latest_version_y_icons
-rm -rf /tmp/$latest_version_mint_themes
+sudo rm -rf /tmp/$latest_version_y_icons
+sudo rm -rf /tmp/$latest_version_mint_themes
