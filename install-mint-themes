@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Author: Jonas Hendrikson 2020 (jonas@hendrikson.se)
+
+# Silly little script to install mint-themes and icons on other debian based
+# distros such as Ubuntu or Ubuntu Cinnamon Remix
 
 mirror="https://mirrors.edge.kernel.org/linuxmint-packages"
 
